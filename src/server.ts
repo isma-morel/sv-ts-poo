@@ -5,9 +5,8 @@ import express from "express";
 import morgan from "morgan";
 
 import cors from "cors";
-import { UserRouter } from "./router/user.router";
+import { UserRouter } from "./user/user.router";
 import { ConfigServer } from "./config/config";
-import { Connection, createConnection } from "mysql2";
 import { DataSource } from "typeorm";
 
 class ServerBootstrap extends ConfigServer {
@@ -20,7 +19,7 @@ class ServerBootstrap extends ConfigServer {
     super();
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-
+    //Invocamos el metodo para conectar la db
     this.dbConnect();
 
     this.app.use(morgan("dev"));
@@ -44,6 +43,7 @@ class ServerBootstrap extends ConfigServer {
    * @memberof ServerBoostrap
    */
 
+  //Conectar a base de datos y manejar sus errores a traves de DataSource
   async dbConnect(): Promise<void> {
     try {
       await new DataSource(this.typeORMConfig).initialize();

@@ -16,6 +16,7 @@ export abstract class ConfigServer {
     return process.env[k];
   }
   public getNumberEnv(k: string): number {
+    //Traemos los valores de las variables de entorno y devolvemos parseados a number
     return Number(this.getEnvironment(k));
   }
 
@@ -23,6 +24,7 @@ export abstract class ConfigServer {
     return this.getEnvironment("NODE_ENV")?.trim() || "";
   }
 
+  //Creamos path para dotenv
   public createPathEnv(path: string): string {
     const arrEnv: string[] = ["env"];
     if (path.length > 0) {

@@ -1,5 +1,6 @@
 import { CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
-
+//Creamos una clase abstracta qye funcione como clase padre para todas las entidades
+//Conteniendo esta clase padre todas las propiedades fundamentales.
 export abstract class BaseEntity {
   //Decorators
 
